@@ -23,6 +23,7 @@ def move(mat, dir):
                 mat[i].append(j)
         mat[i] += ['.'] * temp.count('.')
     for i in range(4 - dir): mat = rotate(mat)
+    return mat
 
 # Finds empty slot in the game mat
 def findEmptySlot(mat):
@@ -55,14 +56,36 @@ def printmat(mat):
     return 0
 
 def game():
-    print("\n\t\t\t\t2048\n")
+    print("\n\t\t\t\t\t2048")
 
-    mat=[['.', '2', '.', '.'],
-        ['.', '4', '.', '2'],
-        ['.', '.', '.', '.'],
-        ['2', '.', '2', '4']]
+    mat = [['.', '2', '.', '.'],
+            ['.', '4', '.', '.'],
+            ['.', '.', '.', '.'],
+            ['2', '.', '2', '.']]
 
     direction = {'L': 0, 'B': 1, 'R': 2, 'T': 3, 'X': 4}
-    printmat(mat)
 
-game()
+    printmat(mat)
+    loseStatus = 0
+    move.score = 0 # Score of the user
+    while True:
+        tmp = input("\nTo continue, Press L for left, R for right, T for top, B for bottom or\nPress X to end the game.\n")
+        if tmp in ["R", "r", "L", "l", "T", "t", "B", "b", "X", "x"]:
+            dir = direction[tmp.upper()]
+            if dir == 4:
+                print("\nFinal score: " + str(move.score))
+                break
+            else:
+                mat = move(mat, dir)
+                mat, loseStatus = addNumber(mat)
+                printmat(mat)
+                if loseStatus:
+                    print ("\nGame Over")
+                    print ("Final score: " + str(move.score))
+                    break
+                print ("\nCurrent score: " + str(move.score))
+        else:
+            print ("\nInvalid direction, please provide valid movement direction (L, B, R, T).")
+    return 0
+
+game() 
