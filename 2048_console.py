@@ -1,5 +1,10 @@
 import random
 
+# Rotates a 2D list clockwise
+def rotate(mat):
+    return list(map(list, zip(*mat[::-1])))
+
+
 def printmat(mat):
     print("\n")
     for i in range(len(mat)):
