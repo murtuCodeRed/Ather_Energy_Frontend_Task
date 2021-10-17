@@ -4,6 +4,24 @@ import random
 def rotate(mat):
     return list(map(list, zip(*mat[::-1])))
 
+# Finds empty slot in the game grid
+def findEmptySlot(mat):
+    for i in range(len(mat)):
+        for j in range(len(mat[i])):
+            if mat[i][j] == '.':
+                return (i, j, 0)
+    return (-1, -1, 1)
+
+# Adds a random number to the grid
+def addNumber(mat):
+    num = random.randint(1, 2) * 2
+    x = random.randint(0, 3)
+    y = random.randint(0, 3)
+    lost = 0
+    if mat[x][y] != '.':
+        x, y, lost = findEmptySlot(mat)
+    if not lost: mat[x][y] = str(num)
+    return (mat, lost)
 
 def printmat(mat):
     print("\n")
