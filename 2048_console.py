@@ -1,6 +1,13 @@
 import random
 size=4
 
+def check(mat):
+        for i in range(size):
+            for j in range(size):
+                if mat[i][j]=='2048':
+                    return 1
+        return 0
+
 # Rotates a 2D list clockwise
 def rotate(mat):
     return list(map(list, zip(*mat[::-1])))
@@ -85,7 +92,7 @@ def game():
                 print("\nGame Exiting..........")
                 print("\nFinal score: " + str(move.score))
                 break
-            elif move.score>=2048:
+            elif check(mat)==1:
                 print("\nYou have won!!!!")
                 print("\nFinal score: " + str(move.score))
                 break
