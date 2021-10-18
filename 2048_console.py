@@ -1,10 +1,11 @@
 import random
-size=4
+size=10
+val='4096'
 
 def check(mat):
         for i in range(size):
             for j in range(size):
-                if mat[i][j]=='2048':
+                if mat[i][j]==val:
                     return 1
         return 0
 
