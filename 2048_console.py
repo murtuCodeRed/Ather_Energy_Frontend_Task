@@ -62,8 +62,8 @@ def check(mat):
             if mat[i][j]==".":
                 continue
             if mat[i][j]==2048:
-                return 0
-    return 1
+                return 1
+    return 0
 
 def game():
     print("\n\t\t\t\t\t2048")
@@ -75,8 +75,7 @@ def game():
             a.append(".")
         mat.append(list(a))
     
-    mat[0][0]="1024"
-    mat[0][1]="1024"
+    mat[0][0]="2"
 
     direction = {'L': 0, 'B': 1, 'R': 2, 'T': 3, 'X': 4}
 
