@@ -1,4 +1,5 @@
 import random
+size=4
 
 # Rotates a 2D list clockwise
 def rotate(mat):
@@ -22,7 +23,7 @@ def move(mat, dir):
             if j != '.':
                 mat[i].append(j)
         mat[i] += ['.'] * temp.count('.')
-    for i in range(4 - dir): mat = rotate(mat)
+    for i in range(size - dir): mat = rotate(mat)
     return mat
 
 # Finds empty slot in the game mat
@@ -36,8 +37,8 @@ def findEmptySlot(mat):
 # Adds a random number to the mat
 def addNumber(mat):
     num = random.randint(1, 2) * 2
-    x = random.randint(0, 3)
-    y = random.randint(0, 3)
+    x = random.randint(0, size-1)
+    y = random.randint(0, size-1)
     lost = 0
     if mat[x][y] != '.':
         x, y, lost = findEmptySlot(mat)
@@ -58,10 +59,14 @@ def printmat(mat):
 def game():
     print("\n\t\t\t\t\t2048")
 
-    mat = [['.', '2', '.', '.'],
-            ['.', '4', '.', '.'],
-            ['.', '.', '.', '.'],
-            ['2', '.', '2', '.']]
+    mat = []
+    for i in range(0,size):
+        a=[]
+        for j in range(0,size):
+            a.append(".")
+        mat.append(list(a))
+    
+    mat[0][0]="2"
 
     direction = {'L': 0, 'B': 1, 'R': 2, 'T': 3, 'X': 4}
 
